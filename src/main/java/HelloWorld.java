@@ -1,14 +1,16 @@
-package com.mefusliam.iu_jsf;
-
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
 
 import java.io.Serializable;
 
 @Named
-@RequestScoped
-public class HelloWorld implements Serializable {
-    private String name = "What up?";
+@ApplicationScoped
+public class HelloWorld {
+    private String name;
+
+    public HelloWorld() {
+        this.name = "Hello World!";
+    }
 
     public String getName() {
         return name;

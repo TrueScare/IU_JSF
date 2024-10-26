@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Table(name = "dataset_entry_change")
 public class DataBaseEntryChange implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "author")

@@ -6,9 +6,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 @Entity
+@Table(name = "dataset")
 public class DataSet implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
     @ManyToOne

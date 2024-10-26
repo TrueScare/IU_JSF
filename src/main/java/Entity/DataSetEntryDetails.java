@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class DataSetEntryDetails implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne
     private DataSetEntry dataSetEntry;

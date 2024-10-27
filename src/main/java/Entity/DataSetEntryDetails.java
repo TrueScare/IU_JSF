@@ -1,5 +1,7 @@
 package Entity;
 
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -7,15 +9,17 @@ import java.util.ArrayList;
 
 @Entity
 @Table(name = "dataset_entry_details")
+@Named
+@ViewScoped
 public class DataSetEntryDetails implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne
     private DataSetEntry dataSetEntry;
     @OneToMany
-    private ArrayList<DataBaseEntryChange> dataBaseEntryChanges;
+    private ArrayList<DataSetEntryChange> dataSetEntryChanges;
     private String description;
     private float emission;
 

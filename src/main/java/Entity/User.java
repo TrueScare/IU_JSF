@@ -1,10 +1,14 @@
 package Entity;
 
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 
 @Entity
+@Named
+@ViewScoped
 public class User {
     public enum Roles {
         ADMINSITRATOR,

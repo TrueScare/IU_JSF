@@ -6,7 +6,6 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
 import java.util.Collection;
-import java.util.Optional;
 
 public abstract class BaseDAO<T> implements DAOInterface<T> {
     EntityManager entityManager;
@@ -17,6 +16,11 @@ public abstract class BaseDAO<T> implements DAOInterface<T> {
         this.classReference = classReference;
         //injections won't work so we have to do it the old way :)
         this.entityManager = Persistence.createEntityManagerFactory("like_zero_to_hero").createEntityManager();
+    }
+
+    @Override
+    public Class<T> getClassReference() {
+        return classReference;
     }
 
     @Override
@@ -47,8 +51,8 @@ public abstract class BaseDAO<T> implements DAOInterface<T> {
     }
 
     @Override
-    public Optional<T> getById(Long id) {
-        return Optional.ofNullable(entityManager.find(this.classReference, id));
+    public T getById(Long id) {
+        return entityManager.find(this.classReference, id);
     }
 
     @Override

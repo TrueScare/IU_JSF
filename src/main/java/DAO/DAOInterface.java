@@ -3,9 +3,10 @@ package DAO;
 import jakarta.persistence.criteria.CriteriaQuery;
 
 import java.util.Collection;
-import java.util.Optional;
 
 public interface DAOInterface<T> {
+    Class<T> getClassReference();
+
     //region manipulation
     void save(T t);
 
@@ -15,7 +16,7 @@ public interface DAOInterface<T> {
 
     //endregion
     //region searching
-    Optional<T> getById(Long id);
+    T getById(Long id);
 
     Collection<T> findAll();
 

@@ -1,10 +1,11 @@
 package Controller;
 
 public interface EntityControllerInterface<T> {
+    String loadPage();
 
-    public void saveEntity(T entity);
+    void saveEntity(T entity);
 
-    public void updateEntity(T entity);
+    void updateEntity(T entity);
 
-    public void deleteEntity(T entity);
+    void deleteEntity(T entity);
 }

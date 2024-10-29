@@ -4,12 +4,13 @@ import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 @Entity
 @Named
 @ViewScoped
-public class User {
+public class User implements Serializable {
     public enum Roles {
         ADMINSITRATOR,
         SCIENTIST

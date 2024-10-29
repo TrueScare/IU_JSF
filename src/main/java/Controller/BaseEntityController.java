@@ -1,6 +1,8 @@
 package Controller;
 
 import DAO.DAOInterface;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.inject.Model;
 import jakarta.inject.Inject;
 
 import java.io.Serializable;

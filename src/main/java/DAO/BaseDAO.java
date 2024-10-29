@@ -1,10 +1,9 @@
 package DAO;
 
+import jakarta.annotation.ManagedBean;
 import jakarta.persistence.*;
-
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
-
 import java.util.Collection;
 
 public abstract class BaseDAO<T> implements DAOInterface<T> {

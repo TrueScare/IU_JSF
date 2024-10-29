@@ -1,8 +1,6 @@
 package Controller;
 
 import DAO.DAOInterface;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.enterprise.inject.Model;
 import jakarta.inject.Inject;
 
 import java.io.Serializable;
@@ -10,6 +8,11 @@ import java.io.Serializable;
 public abstract class BaseEntityController<T> implements Serializable, EntityControllerInterface<T> {
     @Inject
     protected DAOInterface<T> entityDAO;
+
+    @Override
+    public String getEntityClass() {
+        return entityDAO.getClassReference().getSimpleName();
+    }
 
     @Override
     public void saveEntity(T entity) {

@@ -5,6 +5,7 @@ import jakarta.faces.annotation.ManagedProperty;
 import java.lang.reflect.InvocationTargetException;
 
 public abstract class BaseEntityDetailController<T> extends BaseEntityController<T> implements EntityDetailControllerInterface<T> {
+
     @ManagedProperty(value = "#{param.id}")
     protected Long id;
 
@@ -13,8 +14,7 @@ public abstract class BaseEntityDetailController<T> extends BaseEntityController
     @Override
     public String loadPage() {
         updateActiveEntity();
-
-        return entityDAO.getClassReference().toString().toLowerCase().replace(" ", "_") + "detail";
+        return "/" + getEntityClass().toLowerCase().replace(" ", "_") + "/detail";
     }
 
     @Override
@@ -24,14 +24,15 @@ public abstract class BaseEntityDetailController<T> extends BaseEntityController
 
     @Override
     public void updateActiveEntity() {
-        activeEntity = entityDAO.getById(id);
-        if (activeEntity == null) {
+        if (id == null && activeEntity == null) {
             try {
                 activeEntity = entityDAO.getClassReference().getConstructor().newInstance();
+                return;
             } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
                      NoSuchMethodException e) {
                 throw new RuntimeException(e);
             }
         }
+        activeEntity = entityDAO.getById(id);
     }
 }

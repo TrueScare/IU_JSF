@@ -10,6 +10,6 @@ public abstract class BaseEntityListingController<T> extends BaseEntityControlle
 
     @Override
     public String loadPage() {
-        return entityDAO.getClassReference().toString().toLowerCase().replace(" ", "_") + "listing";
+        return "/" + getEntityClass().toLowerCase().replace(" ", "_") + "/listing";
     }
 }

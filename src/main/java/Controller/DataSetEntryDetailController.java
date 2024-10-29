@@ -6,7 +6,7 @@ import jakarta.inject.Named;
 
 @Named
 @ViewScoped
-public class DataSetEntryChangeController extends BaseEntityController<DataSetEntry> {
-    public DataSetEntryChangeController() {
+public class DataSetEntryDetailController extends BaseEntityDetailController<DataSetEntry> {
+    public DataSetEntryDetailController() {
     }
 }

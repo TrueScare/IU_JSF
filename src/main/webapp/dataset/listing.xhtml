@@ -7,5 +7,10 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
     <h:outputLabel value="Hello, world - Listing #{dataSetDetailController.entityClass}"/>
+    <h:dataTable var="dataset" value="#{dataSetListingController.listing}">
+        <h:column>
+            <h:outputText value="#{dataset.description}"/>
+        </h:column>
+    </h:dataTable>
 </f:view>
 </html>

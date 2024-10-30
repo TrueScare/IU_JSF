@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "dataset_entry_details")
@@ -19,7 +20,7 @@ public class DataSetEntryDetails implements Serializable {
     @OneToOne
     private DataSetEntry dataSetEntry;
     @OneToMany
-    private ArrayList<DataSetEntryChange> dataSetEntryChanges;
+    private List<DataSetEntryChange> dataSetEntryChanges = new ArrayList<DataSetEntryChange>();
     private String description;
     private float emission;
 
@@ -53,5 +54,13 @@ public class DataSetEntryDetails implements Serializable {
 
     public void setEmission(float emission) {
         this.emission = emission;
+    }
+
+    public List<DataSetEntryChange> getDataSetEntryChanges() {
+        return dataSetEntryChanges;
+    }
+
+    public void setDataSetEntryChanges(List<DataSetEntryChange> dataSetEntryChanges) {
+        this.dataSetEntryChanges = dataSetEntryChanges;
     }
 }

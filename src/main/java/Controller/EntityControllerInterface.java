@@ -1,6 +1,8 @@
 package Controller;
 
 public interface EntityControllerInterface<T> {
+    String getEntityClass();
+
     String loadPage();
 
     void saveEntity(T entity);

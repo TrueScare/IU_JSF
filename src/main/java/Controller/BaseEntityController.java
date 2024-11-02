@@ -10,6 +10,11 @@ public abstract class BaseEntityController<T> implements Serializable, EntityCon
     protected DAOInterface<T> entityDAO;
 
     @Override
+    public String getEntityClass() {
+        return entityDAO.getClassReference().getSimpleName();
+    }
+
+    @Override
     public void saveEntity(T entity) {
         entityDAO.save(entity);
     }

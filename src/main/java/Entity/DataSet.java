@@ -1,7 +1,5 @@
 package Entity;
 
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Named;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -10,8 +8,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "dataset")
-@Named
-@ViewScoped
 public class DataSet implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +17,7 @@ public class DataSet implements Serializable {
     @JoinColumn(name = "owner")
     private User owner;
     private String locale;
-    @OneToMany
+    @OneToMany(mappedBy = "dataSet", cascade = CascadeType.ALL)
     private List<DataSetEntry> dataSetEntries = new ArrayList<DataSetEntry>();
 
     public User getOwner() {

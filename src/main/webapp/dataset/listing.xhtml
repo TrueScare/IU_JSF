@@ -6,10 +6,27 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
+    <p>
+        <h:button outcome="#{dataSetDetailController.pagePath}"
+                  value="neues Dataset"/>
+    </p>
+
     <h:outputLabel value="Hello, world - Listing #{dataSetDetailController.entityClass}"/>
     <h:dataTable var="dataset" value="#{dataSetListingController.listing}">
         <h:column>
             <h:outputText value="#{dataset.description}"/>
+        </h:column>
+        <h:column>
+            <h:button outcome="#{dataSetDetailController.pagePath}" value="bearbeiten">
+                <f:param name="entityID" value="#{dataset.id}"/>
+            </h:button>
+        </h:column>
+        <h:column>
+            <h:form>
+                <h:commandButton action="#{dataSetListingController.deleteEntity(dataset)}"
+                                 value="löschen"
+                />
+            </h:form>
         </h:column>
     </h:dataTable>
 </f:view>

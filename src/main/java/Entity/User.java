@@ -1,15 +1,11 @@
 package Entity;
 
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Named;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-@Entity
-@Named
-@ViewScoped
+@Entity(name = "users")
 public class User implements Serializable {
     public enum Roles {
         ADMINSITRATOR,
@@ -22,9 +18,9 @@ public class User implements Serializable {
     private String username;
     private String password;
     private Roles roles;
-    @OneToMany
+    @OneToMany(mappedBy = "owner")
     private ArrayList<DataSet> datasets;
-    @OneToMany
+    @OneToMany(mappedBy = "owner")
     private ArrayList<DataSetEntry> dataSetEntries;
 
     public User() {

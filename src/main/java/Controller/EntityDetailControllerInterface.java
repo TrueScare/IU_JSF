@@ -4,4 +4,6 @@ public interface EntityDetailControllerInterface<T> extends EntityControllerInte
     T getActiveEntity();
 
     void updateActiveEntity();
+
+    String getPagePath(Long id);
 }

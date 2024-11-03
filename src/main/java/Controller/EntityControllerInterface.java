@@ -3,7 +3,9 @@ package Controller;
 public interface EntityControllerInterface<T> {
     String getEntityClass();
 
-    String loadPage();
+    void loadPage();
+
+    String getPagePath();
 
     void saveEntity(T entity);
 

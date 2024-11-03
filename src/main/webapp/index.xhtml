@@ -10,10 +10,11 @@
 
 <h:body>
     <p>
-        <h:form>
-            <h:commandButton action="#{dataSetListingController.loadPage()}" value="Datensets"/>
-        </h:form>
+
         <h:outputText value="Ello!"/>
+    </p>
+    <p>
+        <h:button outcome="#{dataSetListingController.pagePath}" value="Datensets"/>
     </p>
 </h:body>
 </html>

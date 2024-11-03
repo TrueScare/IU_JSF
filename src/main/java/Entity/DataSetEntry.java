@@ -1,7 +1,5 @@
 package Entity;
 
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Named;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -9,8 +7,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "dataset_entry")
-@Named
-@ViewScoped
 public class DataSetEntry implements Serializable {
     @Id
     private Long id;
@@ -20,11 +16,13 @@ public class DataSetEntry implements Serializable {
     @ManyToOne
     @JoinColumn(name = "owner")
     private User owner;
-    @OneToOne
+    @OneToOne(mappedBy = "dataSetEntry")
     private DataSetEntryDetails details;
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "last_update")
     private LocalDateTime updatedLast;
 
     public DataSet getDataSet() {

@@ -1,7 +1,5 @@
 package Entity;
 
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Named;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -9,8 +7,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "dataset_entry_change")
-@Named
-@ViewScoped
 public class DataSetEntryChange implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +22,7 @@ public class DataSetEntryChange implements Serializable {
     private DataSetEntryDetails dataSetEntryDetails;
     private String comment;
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
     private boolean approved;
 

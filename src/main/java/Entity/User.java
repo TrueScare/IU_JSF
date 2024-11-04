@@ -4,12 +4,14 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "users")
 public class User implements Serializable {
     public enum Roles {
         ADMINSITRATOR,
-        SCIENTIST
+        SCIENTIST,
+        ANONYMOUS
     }
 
     @Id
@@ -19,9 +21,9 @@ public class User implements Serializable {
     private String password;
     private Roles roles;
     @OneToMany(mappedBy = "owner")
-    private ArrayList<DataSet> datasets;
+    private List<DataSet> datasets = new ArrayList<DataSet>();
     @OneToMany(mappedBy = "owner")
-    private ArrayList<DataSetEntry> dataSetEntries;
+    private List<DataSetEntry> dataSetEntries = new ArrayList<>();
 
     public User() {
     }
@@ -56,5 +58,25 @@ public class User implements Serializable {
 
     public void setRoles(String roles) {
         this.roles = Roles.valueOf(roles);
+    }
+
+    public void setRoles(Roles roles) {
+        this.roles = roles;
+    }
+
+    public List<DataSet> getDatasets() {
+        return datasets;
+    }
+
+    public void setDatasets(List<DataSet> datasets) {
+        this.datasets = datasets;
+    }
+
+    public List<DataSetEntry> getDataSetEntries() {
+        return dataSetEntries;
+    }
+
+    public void setDataSetEntries(List<DataSetEntry> dataSetEntries) {
+        this.dataSetEntries = dataSetEntries;
     }
 }

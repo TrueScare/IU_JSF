@@ -7,6 +7,17 @@
         <param-name>javax.faces.CONFIG_FILES</param-name>
         <param-value>/faces-config.xml</param-value>
     </context-param>
+    <filter>
+        <filter-name>SecurityFilter</filter-name>
+        <filter-class>Filter.SecurityFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SecurityFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>jakarta.faces.webapp.FacesServlet</servlet-class>

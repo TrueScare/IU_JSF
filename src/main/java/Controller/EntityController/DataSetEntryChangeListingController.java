@@ -1,4 +1,4 @@
-package Controller;
+package Controller.EntityController;
 
 import Entity.DataSetEntry;
 import jakarta.enterprise.context.RequestScoped;

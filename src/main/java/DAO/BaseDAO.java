@@ -8,6 +8,7 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
 import java.util.Collection;
+import java.util.List;
 
 public abstract class BaseDAO<T> implements DAOInterface<T> {
     EntityManager entityManager;
@@ -58,7 +59,7 @@ public abstract class BaseDAO<T> implements DAOInterface<T> {
     }
 
     @Override
-    public Collection<T> findAll() {
+    public List<T> findAll() {
         CriteriaQuery<T> criteriaQuery = entityManager.getCriteriaBuilder().createQuery(classReference);
         Root<T> root = criteriaQuery.from(classReference);
         criteriaQuery.select(root);
@@ -67,7 +68,7 @@ public abstract class BaseDAO<T> implements DAOInterface<T> {
     }
 
     @Override
-    public Collection<T> findByCriteria(CriteriaQuery<T> criteria) {
+    public List<T> findByCriteria(CriteriaQuery<T> criteria) {
         return entityManager.createQuery(criteria).getResultList();
     }
 }

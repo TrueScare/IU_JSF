@@ -1,4 +1,4 @@
-package Controller;
+package Controller.EntityController;
 
 public interface EntityDetailControllerInterface<T> extends EntityControllerInterface<T> {
     T getActiveEntity();

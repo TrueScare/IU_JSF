@@ -1,4 +1,4 @@
-package Controller;
+package Controller.EntityController;
 
 public interface EntityControllerInterface<T> {
     String getEntityClass();

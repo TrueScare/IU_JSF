@@ -1,4 +1,4 @@
-package Controller;
+package Controller.EntityController;
 
 import DAO.DAOInterface;
 import jakarta.inject.Inject;

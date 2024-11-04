@@ -1,4 +1,4 @@
-package Controller;
+package Controller.EntityController;
 
 import java.lang.reflect.InvocationTargetException;
 

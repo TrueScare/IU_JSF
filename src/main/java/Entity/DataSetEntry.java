@@ -4,34 +4,29 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "dataset_entry")
 public class DataSetEntry implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "dataset")
-    private DataSet dataSet;
     @ManyToOne
     @JoinColumn(name = "owner")
     private User owner;
-    @OneToOne(mappedBy = "dataSetEntry")
-    private DataSetEntryDetails details;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
     private LocalDateTime createdAt;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "last_update")
     private LocalDateTime updatedLast;
-
-    public DataSet getDataSet() {
-        return dataSet;
-    }
-
-    public void setDataSet(DataSet dataSet) {
-        this.dataSet = dataSet;
-    }
+    @OneToMany(mappedBy = "datasetEntry")
+    private List<DataSetEntryChange> entryChanges = new ArrayList<>();
+    private String country;
+    private float emissions;
+    private int year;
 
     public void setId(Long id) {
         this.id = id;
@@ -49,14 +44,6 @@ public class DataSetEntry implements Serializable {
         this.owner = owner;
     }
 
-    public DataSetEntryDetails getDetails() {
-        return details;
-    }
-
-    public void setDetails(DataSetEntryDetails details) {
-        this.details = details;
-    }
-
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -71,5 +58,29 @@ public class DataSetEntry implements Serializable {
 
     public void setUpdatedLast(LocalDateTime updatedLast) {
         this.updatedLast = updatedLast;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public float getEmissions() {
+        return emissions;
+    }
+
+    public void setEmissions(float emissions) {
+        this.emissions = emissions;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 }

@@ -17,15 +17,14 @@ public class DataSetEntryChange implements Serializable {
     @ManyToOne
     @JoinColumn(name = "dataset_entry")
     private DataSetEntry datasetEntry;
-    @ManyToOne
-    @JoinColumn(name = "dataset_entry_details")
-    private DataSetEntryDetails dataSetEntryDetails;
     private String comment;
+    private String country;
+    private float emissions;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
     private LocalDateTime createdAt;
     private boolean approved;
-
+    private int year;
 
     public void setId(Long id) {
         this.id = id;
@@ -33,5 +32,69 @@ public class DataSetEntryChange implements Serializable {
 
     public Long getId() {
         return id;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
+    public DataSetEntry getDatasetEntry() {
+        return datasetEntry;
+    }
+
+    public void setDatasetEntry(DataSetEntry datasetEntry) {
+        this.datasetEntry = datasetEntry;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public float getEmissions() {
+        return emissions;
+    }
+
+    public void setEmissions(float emissions) {
+        this.emissions = emissions;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 }

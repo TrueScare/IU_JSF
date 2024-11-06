@@ -8,7 +8,7 @@
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
 
         <properties>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mariadb://localhost:5306/like_zero_to_hero"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mariadb://localhost:5306/like_hero_to_zero"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
             <property name="jakarta.persistence.jdbc.password" value="password_iu"/>
             <property name="hibernate" value="org.mariadb.jdbc.Driver"/>

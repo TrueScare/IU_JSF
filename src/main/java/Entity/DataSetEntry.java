@@ -18,15 +18,15 @@ public class DataSetEntry implements Serializable {
     private User owner;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "last_update")
-    private LocalDateTime updatedLast;
+    private LocalDateTime updatedLast = LocalDateTime.now();
     @OneToMany(mappedBy = "datasetEntry")
     private List<DataSetEntryChange> entryChanges = new ArrayList<>();
     private String country;
     private float emissions;
-    private int year;
+    private int year = LocalDateTime.now().getYear();
 
     public void setId(Long id) {
         this.id = id;

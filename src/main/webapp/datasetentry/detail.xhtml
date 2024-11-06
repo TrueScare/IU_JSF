@@ -3,9 +3,49 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<f:metadata>
+    <f:viewParam name="entityID" value="#{dataSetEntryDetailController.entityID}"/>
+    <f:viewAction action="#{dataSetEntryDetailController.loadPage()}"/>
+</f:metadata>
+
 <f:view>
-    <h:outputLabel value="Hello, world - Detail #{dataSetDetailController.entityClass}"/>
+    <h:form>
+        <!-- datasetentry values -->
+        <p>
+            <h:outputLabel value="Land">
+                <h:selectOneMenu value="#{dataSetEntryDetailController.activeEntity.country}">
+                    <f:selectItems value="#{localeService.allLocales}"
+                                   var="locale"
+                                   itemLabel="#{localeService.getCountryByCode(locale)}"
+                                   itemValue="#{localeService.getCountryByCode(locale)}"
+                    />
+                </h:selectOneMenu>
+            </h:outputLabel>
+        </p>
+        <p>
+            <h:outputLabel value="Emission">
+                <h:inputText value="#{dataSetEntryDetailController.activeEntity.emissions}"/>
+            </h:outputLabel>
+        </p>
+        <p>
+            <h:outputLabel value="Jahr">
+                <h:inputText value="#{dataSetEntryDetailController.activeEntity.year}"/>
+            </h:outputLabel>
+        </p>
+
+        <!-- form actions -->
+        <p>
+            <h:commandButton
+                    action="#{dataSetEntryDetailController.updateEntity(dataSetEntryDetailController.activeEntity)}"
+                    value="Speichern"
+                    rendered="#{dataSetEntryDetailController.activeEntity.id != null}"/>
+            <h:commandButton
+                    action="#{dataSetEntryDetailController.saveEntity(dataSetEntryDetailController.activeEntity)}"
+                    value="Anlegen"
+                    rendered="#{dataSetEntryDetailController.activeEntity.id == null}"/>
+        </p>
+    </h:form>
 </f:view>
 </html>

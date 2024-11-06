@@ -6,6 +6,23 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <h:outputLabel value="Hello, world - Listing #{dataSetDetailController.entityClass}"/>
+    <p>
+        <h:button outcome="#{dataSetEntryDetailController.pagePath}"
+                  value="neues Dataset"/>
+    </p>
+    <h:dataTable var="entry" value="#{dataSetEntryListingController.listing}">
+        <h:column>
+            <f:facet name="header">Land</f:facet>
+            <h:outputText value="#{entry.country}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">Emissionen</f:facet>
+            <h:outputText value="#{entry.emissions}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">Jahr</f:facet>
+            <h:outputText value="#{entry.year}"/>
+        </h:column>
+    </h:dataTable>
 </f:view>
 </html>

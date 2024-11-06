@@ -9,9 +9,8 @@ import java.util.List;
 @Entity(name = "users")
 public class User implements Serializable {
     public enum Roles {
-        ADMINSITRATOR,
-        SCIENTIST,
-        ANONYMOUS
+        ADMINISTRATOR,
+        SCIENTIST
     }
 
     @Id
@@ -19,11 +18,11 @@ public class User implements Serializable {
     private Long id;
     private String username;
     private String password;
-    private Roles roles;
-    @OneToMany(mappedBy = "owner")
-    private List<DataSet> datasets = new ArrayList<DataSet>();
+    private String roles;
     @OneToMany(mappedBy = "owner")
     private List<DataSetEntry> dataSetEntries = new ArrayList<>();
+    @OneToMany(mappedBy = "author")
+    private List<DataSetEntryChange> dataSetEntryChanges = new ArrayList<>();
 
     public User() {
     }
@@ -52,24 +51,23 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Roles getRoles() {
-        return roles;
+    public String[] getRoles() {
+        return roles.split(",");
     }
 
     public void setRoles(String roles) {
-        this.roles = Roles.valueOf(roles);
-    }
-
-    public void setRoles(Roles roles) {
         this.roles = roles;
     }
 
-    public List<DataSet> getDatasets() {
-        return datasets;
-    }
-
-    public void setDatasets(List<DataSet> datasets) {
-        this.datasets = datasets;
+    public void setRoles(Roles[] roles) {
+        StringBuilder s = new StringBuilder();
+        for (Roles role : roles) {
+            s.append(role.name());
+            if (role.equals(roles[roles.length - 1])) {
+                s.append(",");
+            }
+        }
+        this.roles = s.toString();
     }
 
     public List<DataSetEntry> getDataSetEntries() {
@@ -78,5 +76,13 @@ public class User implements Serializable {
 
     public void setDataSetEntries(List<DataSetEntry> dataSetEntries) {
         this.dataSetEntries = dataSetEntries;
+    }
+
+    public List<DataSetEntryChange> getDataSetEntryChanges() {
+        return dataSetEntryChanges;
+    }
+
+    public void setDataSetEntryChanges(List<DataSetEntryChange> dataSetEntryChanges) {
+        this.dataSetEntryChanges = dataSetEntryChanges;
     }
 }

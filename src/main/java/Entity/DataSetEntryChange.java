@@ -22,7 +22,7 @@ public class DataSetEntryChange implements Serializable {
     private float emissions;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
     private boolean approved;
     private int year;
 

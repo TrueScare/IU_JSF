@@ -1,6 +1,10 @@
 package Controller.EntityController;
 
+import Entity.DataSetEntry;
+
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class BaseEntityDetailController<T> extends BaseEntityController<T> implements EntityDetailControllerInterface<T> {
 

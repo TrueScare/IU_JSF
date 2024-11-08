@@ -1,52 +1,39 @@
 create database if not exists like_hero_to_zero;
 use like_hero_to_zero;
-create table if not exists users
-(
-    id       int auto_increment
-    primary key,
-    username varchar(255)                 null,
-    password varchar(255)                 null comment 'should be stored as hash',
-    roles    longtext collate utf8mb4_bin null comment 'defined by an ENUM'
-    check (json_valid(`roles`)),
-    constraint username
-    unique (username)
-    );
+CREATE TABLE `users` (
+                         `id` integer PRIMARY KEY AUTO_INCREMENT,
+                         `username` varchar(255) UNIQUE,
+                         `password` varchar(255) COMMENT 'should be stored as hash',
+                         `roles` varchar(255) COMMENT 'defined by an ENUM'
+);
 
-create table if not exists dataset_entry
-(
-    id          int auto_increment
-    primary key,
-    owner       int          null,
-    country     varchar(255) null,
-    emissions   int          null,
-    created_at  datetime     null,
-    last_update datetime     null,
-    constraint dataset_entry_ibfk_1
-    foreign key (owner) references users (id)
-    );
+CREATE TABLE `dataset_entry` (
+                                 `id` integer PRIMARY KEY AUTO_INCREMENT,
+                                 `owner` integer,
+                                 `country` varchar(255),
+                                 `emissions` integer,
+                                 `year` integer,
+                                 `created_at` datetime,
+                                 `last_update` datetime
+);
 
-create index if not exists owner
-    on dataset_entry (owner);
+CREATE TABLE `dataset_entry_change` (
+                                        `id` integer PRIMARY KEY AUTO_INCREMENT,
+                                        `author` integer,
+                                        `dataset_entry` integer,
+                                        `comment` varchar(255),
+                                        `country` varchar(255),
+                                        `emissions` integer,
+                                        `year` integer,
+                                        `created_at` datetime,
+                                        `approved` bool
+);
 
-create table if not exists dataset_entry_change
-(
-    id            int auto_increment
-    primary key,
-    author        int          null,
-    dataset_entry int          null,
-    comment       varchar(255) null,
-    country       varchar(255) null,
-    emissions     int          null,
-    created_at    datetime     null,
-    approved      tinyint(1)   null,
-    constraint dataset_entry_change_ibfk_1
-    foreign key (author) references users (id),
-    constraint dataset_entry_change_ibfk_2
-    foreign key (dataset_entry) references dataset_entry (id)
-    );
+ALTER TABLE `dataset_entry` ADD FOREIGN KEY (`owner`) REFERENCES `users` (`id`);
 
-create index if not exists author
-    on dataset_entry_change (author);
+ALTER TABLE `dataset_entry_change` ADD FOREIGN KEY (`author`) REFERENCES `users` (`id`);
 
-create index if not exists dataset_entry
-    on dataset_entry_change (dataset_entry);
+ALTER TABLE `dataset_entry_change` ADD FOREIGN KEY (`dataset_entry`) REFERENCES `dataset_entry` (`id`);
+
+insert into `users` (username, password, roles)
+values ('admin','aQc2WAVEJJAGlgDYtTtmv5dGlM7azB9Wet1res1bppfwieU9AiYsJHFT0Hgu/JScUekpTP4gCzQhvnKSxjXGHw==','ADMINISTRATOR')

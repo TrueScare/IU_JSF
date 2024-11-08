@@ -13,7 +13,8 @@
     </filter>
     <filter-mapping>
         <filter-name>SecurityFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/datasetentry/*</url-pattern>
+        <url-pattern>/datasetentrychange/*</url-pattern>
 
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>

@@ -4,12 +4,10 @@ import DAO.DataSetEntryDAO;
 import Entity.DataSetEntry;
 import Service.LocaleService;
 import jakarta.enterprise.context.RequestScoped;
-import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 import java.util.Collection;
-import java.util.Locale;
 
 @Named
 @RequestScoped
@@ -29,5 +27,10 @@ public class DataSetEntryListingController extends BaseEntityListingController<D
         }
 
         return entityDAO.getListingByLocale(localeService.getUserLocale());
+    }
+
+    @Override
+    public String getPagePath() {
+        return "/index.xhtml";
     }
 }

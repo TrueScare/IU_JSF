@@ -5,6 +5,10 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:metadata>
+    <f:viewParam name="redirectTo" value="#{securityController.redirectTo}"/>
+</f:metadata>
+
 <f:view>
     <h:dataTable var="message" value="#{messages.messages}">
         <h:column>

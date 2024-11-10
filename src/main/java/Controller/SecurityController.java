@@ -7,12 +7,15 @@ import Service.SecurityService;
 import Structs.Message;
 import Structs.Messages;
 import jakarta.faces.application.NavigationHandler;
+import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Named
 @ViewScoped
@@ -25,6 +28,7 @@ public class SecurityController implements Serializable {
     SecurityService securityService;
     @Inject
     Messages messages;
+    String redirectTo;
 
     User loginUser = new User();
 
@@ -38,7 +42,12 @@ public class SecurityController implements Serializable {
 
         if (securityService.validateUser(loginUser, userValidateAgainst)) {
             context.setActiveUser(userValidateAgainst);
-            return "dataset/listing.xhtml?faces-redirect=true";
+            ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+            try {
+                externalContext.redirect(Objects.requireNonNullElse(redirectTo, externalContext.getRequestContextPath() + "dataset/listing.xhtml?faces-redirect=true"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         messages.addMessage("Beim anmelden ist ein Fehler aufgetreten.", Message.MessageType.ERROR);
 
@@ -64,5 +73,13 @@ public class SecurityController implements Serializable {
 
     public void setLoginUser(User loginUser) {
         this.loginUser = loginUser;
+    }
+
+    public String getRedirectTo() {
+        return redirectTo;
+    }
+
+    public void setRedirectTo(String redirectTo) {
+        this.redirectTo = redirectTo;
     }
 }

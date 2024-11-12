@@ -33,7 +33,10 @@ public class SecurityController implements Serializable {
     User loginUser = new User();
 
     public String getLoginPagePath() {
-        return "login";
+        return "/login.xhtml";
+    }
+    public String getLogoutPagePath() {
+        return "/logout.xhtml";
     }
 
     public String login() {
@@ -44,7 +47,7 @@ public class SecurityController implements Serializable {
             context.setActiveUser(userValidateAgainst);
             ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
             try {
-                externalContext.redirect(Objects.requireNonNullElse(redirectTo, externalContext.getRequestContextPath() + "dataset/listing.xhtml?faces-redirect=true"));
+                externalContext.redirect(Objects.requireNonNullElse(redirectTo, externalContext.getRequestContextPath() + "/index.xhtml?faces-redirect=true"));
             } catch (IOException e) {
                 e.printStackTrace();
             }

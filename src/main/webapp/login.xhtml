@@ -8,8 +8,12 @@
 <f:metadata>
     <f:viewParam name="redirectTo" value="#{securityController.redirectTo}"/>
 </f:metadata>
+<h:head>
 
-<f:view>
+</h:head>
+<h:body>
+    <ui:include src="structure/header.xhtml"/>
+
     <h:dataTable var="message" value="#{messages.messages}">
         <h:column>
             <h:outputText value="#{message.type}"/>
@@ -34,5 +38,5 @@
         <h:outputText value="Sie sind nicht #{appContext.activeUser.username}?"/>
         <h:commandButton action="#{securityController.logout()}" value="Logout"/>
     </h:form>
-</f:view>
+</h:body>
 </html>

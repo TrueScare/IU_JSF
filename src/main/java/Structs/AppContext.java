@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Named
 @SessionScoped
 public class AppContext implements Serializable {
-    private User activeUser;
+    private User activeUser = null;
 
     public AppContext() {
     }

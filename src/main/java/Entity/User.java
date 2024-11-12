@@ -18,7 +18,8 @@ public class User implements Serializable {
     private Long id;
     private String username;
     private String password;
-    private String roles;
+    @Column(name = "is_admin")
+    private boolean admin = false;
     @OneToMany(mappedBy = "owner")
     private List<DataSetEntry> dataSetEntries = new ArrayList<>();
     @OneToMany(mappedBy = "author")
@@ -51,25 +52,6 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String[] getRoles() {
-        return roles.split(",");
-    }
-
-    public void setRoles(String roles) {
-        this.roles = roles;
-    }
-
-    public void setRoles(Roles[] roles) {
-        StringBuilder s = new StringBuilder();
-        for (Roles role : roles) {
-            s.append(role.name());
-            if (role.equals(roles[roles.length - 1])) {
-                s.append(",");
-            }
-        }
-        this.roles = s.toString();
-    }
-
     public List<DataSetEntry> getDataSetEntries() {
         return dataSetEntries;
     }
@@ -84,5 +66,13 @@ public class User implements Serializable {
 
     public void setDataSetEntryChanges(List<DataSetEntryChange> dataSetEntryChanges) {
         this.dataSetEntryChanges = dataSetEntryChanges;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 }

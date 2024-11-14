@@ -19,7 +19,7 @@ public class DataSetEntryChange implements Serializable {
     private DataSetEntry datasetEntry;
     private String comment;
     private String country;
-    private float emissions;
+    private double emissions;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
@@ -82,11 +82,11 @@ public class DataSetEntryChange implements Serializable {
         this.country = country;
     }
 
-    public float getEmissions() {
+    public double getEmissions() {
         return emissions;
     }
 
-    public void setEmissions(float emissions) {
+    public void setEmissions(double emissions) {
         this.emissions = emissions;
     }
 

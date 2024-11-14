@@ -25,7 +25,7 @@ public class DataSetEntry implements Serializable {
     @OneToMany(mappedBy = "datasetEntry")
     private List<DataSetEntryChange> entryChanges = new ArrayList<>();
     private String country;
-    private float emissions;
+    private double emissions;
     private int year = LocalDateTime.now().getYear();
 
     public void setId(Long id) {
@@ -68,11 +68,11 @@ public class DataSetEntry implements Serializable {
         this.country = country;
     }
 
-    public float getEmissions() {
+    public double getEmissions() {
         return emissions;
     }
 
-    public void setEmissions(float emissions) {
+    public void setEmissions(double emissions) {
         this.emissions = emissions;
     }
 

@@ -22,25 +22,27 @@
     <h:form>
         <!-- datasetentry values -->
         <p:card>
-            <div class="field">
-                <p:outputLabel value="Land"/>
-                <p:selectOneMenu value="#{dataSetEntryDetailController.activeEntity.country}">
-                    <f:selectItems value="#{localeService.allLocales}"
-                                   var="locale"
-                                   itemLabel="#{localeService.getCountryByCode(locale)}"
-                                   itemValue="#{localeService.getCountryByCode(locale)}"
-                    />
-                </p:selectOneMenu>
+            <div class="ui-fluid">
+                <div class="field">
+                    <p:outputLabel value="Land"/>
+                    <p:selectOneMenu value="#{dataSetEntryDetailController.activeEntity.country}">
+                        <f:selectItems value="#{localeService.allLocales}"
+                                       var="locale"
+                                       itemLabel="#{localeService.getCountryByCode(locale)}"
+                                       itemValue="#{localeService.getCountryByCode(locale)}"
+                        />
+                    </p:selectOneMenu>
+                </div>
+                <div class="field">
+                    <p:outputLabel value="Emissionen"/>
+                    <p:inputNumber value="#{dataSetEntryDetailController.activeEntity.emissions}"/>
+                </div>
+                <div class="field">
+                    <p:outputLabel value="Jahr"/>
+                    <p:inputNumber value="#{dataSetEntryDetailController.activeEntity.year}" decimalPlaces="0"
+                                   thousandSeparator=""/>
+                </div>
             </div>
-            <div class="field">
-                <p:outputLabel value="Emissionen"/>
-                <p:inputNumber value="#{dataSetEntryDetailController.activeEntity.emissions}"/>
-            </div>
-            <div class="field">
-                <p:outputLabel value="Jahr"/>
-                <p:inputNumber value="#{dataSetEntryDetailController.activeEntity.year}" decimalPlaces="0" thousandSeparator=""/>
-            </div>
-
             <f:facet name="footer">
                 <p:commandButton
                         action="#{dataSetEntryDetailController.updateEntity(dataSetEntryDetailController.activeEntity)}"

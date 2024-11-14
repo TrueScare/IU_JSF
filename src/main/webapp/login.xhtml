@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <f:metadata>
     <f:viewParam name="redirectTo" value="#{securityController.redirectTo}"/>
 </f:metadata>
@@ -14,29 +15,35 @@
 <h:body>
     <ui:include src="structure/header.xhtml"/>
 
-    <h:dataTable var="message" value="#{messages.messages}">
-        <h:column>
+    <p:dataTable var="message" value="#{messages.messages}" rendered="#{messages.messages.size() > 0 }">
+        <p:column>
             <h:outputText value="#{message.type}"/>
-        </h:column>
-        <h:column>
+        </p:column>
+        <p:column>
             <h:outputText value="#{message.message}"/>
-        </h:column>
-    </h:dataTable>
-
+        </p:column>
+    </p:dataTable>
     <h:form rendered="#{appContext.activeUser == null}">
-        <h:outputLabel value="Username"/>
-        <h:inputText value="#{securityController.loginUser.username}"/>
-
-        <h:outputLabel value="Password"/>
-        <h:inputSecret value="#{securityController.loginUser.password}"/>
-
-        <h:commandButton action="#{securityController.login()}" value="Login"/>
+        <p:card title="Login">
+            <div class="ui-fluid">
+                <div class="field">
+                    <h:outputLabel value="Username"/>
+                    <p:inputText value="#{securityController.loginUser.username}"/>
+                </div>
+                <div class="field">
+                    <h:outputLabel value="Password"/>
+                    <p:password value="#{securityController.loginUser.password}"/>
+                </div>
+            </div>
+            <p:commandButton action="#{securityController.login()}" value="Login"/>
+        </p:card>
     </h:form>
 
     <h:form rendered="#{appContext.activeUser != null}">
         <h2>Angemeldet als <h:outputText value="#{appContext.activeUser.username}"/></h2>
-        <h:outputText value="Sie sind nicht #{appContext.activeUser.username}?"/>
-        <h:commandButton action="#{securityController.logout()}" value="Logout"/>
+        <p:card title="Sie sind nicht #{appContext.activeUser.username}?">
+            <p:commandButton action="#{securityController.logout()}" value="Logout"/>
+        </p:card>
     </h:form>
 </h:body>
 </html>

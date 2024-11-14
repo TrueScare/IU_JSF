@@ -30,7 +30,7 @@ public class DataSetEntryDetailController extends BaseEntityDetailController<Dat
         }
 
         if (!ids.contains(id) && entityDAO.getById(id) != null) {
-            return "/datasetentrychange/detail.xhtml?toBeChangedId=" + id;
+            return "/datasetentrychange/detail.xhtml?toBeChangedID=" + id;
         }
 
         return super.getPagePath(id);

@@ -12,6 +12,9 @@
         <p:menuitem value="neuer Eintrag"
                     outcome="#{dataSetEntryDetailController.pagePath}"
                     rendered="#{appContext.activeUser != null}"/>
+        <p:menuitem value="eingegangene Änderungen"
+                    outcome="#{dataSetEntryChangeListingController.pagePath}"
+                    rendered="#{appContext.activeUser != null}"/>
         <!--<p:menuitem value="user generieren"
                     action="#{userController.setupUsers}"
                     rendered="#{appContext.activeUser.admin}"/>-->

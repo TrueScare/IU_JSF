@@ -5,21 +5,17 @@
               xmlns:f="http://xmlns.jcp.org/jsf/core"
               xmlns:p="http://primefaces.org/ui">
     <h:form>
-        <p:dataTable var="entry" value="#{dataSetEntryListingController.listing}" filteredValue="#{dataSetEntryListingController.listing}">
-            <p:column>
-                <f:facet name="header">Land</f:facet>
+        <p:dataTable var="entry"
+                     value="#{dataSetEntryListingController.listing}"
+                     lazy="true">
+            <p:column headerText="Land">
                 <h:outputText value="#{entry.country}"/>
             </p:column>
-            <p:column>
-                <f:facet name="header">Emissionen</f:facet>
+            <p:column headerText="Emissionen">
                 <h:outputText value="#{entry.emissions}"/>
             </p:column>
-            <p:column>
-                <f:facet name="header">Jahr</f:facet>
-                <h:outputText value="#{entry.year}"/>
-            </p:column>
-            <p:column rendered="#{appContext.activeUser != null}">
-                <f:facet name="Aktionen">Jahr</f:facet>
+            <p:column rendered="#{appContext.activeUser != null}"
+                      headerText="Aktionen">
                 <div class="ui-inputgroup">
                     <p:button outcome="#{dataSetEntryChangeDetailController.getPagePath()}"
                               value="änderung vorschlagen"
@@ -34,7 +30,9 @@
                     <p:commandButton action="#{dataSetEntryListingController.deleteEntity(entry)}"
                                      rendered="#{appContext.activeUser.id == entry.owner.id}"
                                      value="löschen"
-                                     styleClass="ui-button-danger"/>
+                                     styleClass="ui-button-danger"
+                                     update="@form"
+                                     ajax="true"/>
                 </div>
             </p:column>
         </p:dataTable>

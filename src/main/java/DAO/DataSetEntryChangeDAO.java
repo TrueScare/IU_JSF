@@ -28,7 +28,7 @@ public class DataSetEntryChangeDAO extends BaseDAO<DataSetEntryChange> {
         Join<DataSetEntryChange, DataSetEntry> entry = root.join("datasetEntry", JoinType.INNER);
         Join<DataSetEntry, User> user = entry.join("owner", JoinType.INNER);
         cq.where(cb.and(
-                        cb.equal(root.get("approved"), false),
+                        cb.isNull(root.get("approved")),
                         cb.equal(user.get("id"), userID)
                 )
         );

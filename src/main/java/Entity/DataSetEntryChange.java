@@ -23,7 +23,7 @@ public class DataSetEntryChange implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
-    private boolean approved;
+    private Boolean approved = null;
     private int year;
 
     public void setId(Long id) {

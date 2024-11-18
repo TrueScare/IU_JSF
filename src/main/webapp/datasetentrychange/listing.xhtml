@@ -18,30 +18,33 @@
     <h:form>
         <p:dataTable var="entry" value="#{dataSetEntryChangeListingController.listing}"
                      filteredValue="#{dataSetEntryChangeListingController.listing}">
-            <p:column>
-                <f:facet name="header">Land</f:facet>
+            <p:column headerText="Land">
                 <h:outputText value="#{entry.country}"/>
             </p:column>
-            <p:column>
-                <f:facet name="header">Emissionen</f:facet>
+            <p:column headerText="Emissionen">
                 <h:outputText value="#{entry.emissions}"/>
             </p:column>
-            <p:column>
-                <f:facet name="header">Jahr</f:facet>
+            <p:column headerText="Jahr">
                 <h:outputText value="#{entry.year}"/>
             </p:column>
-            <p:column>
-                <f:facet name="header">Kommentar</f:facet>
+            <p:column headerText="Kommentar">
                 <h:outputText value="#{entry.comment}"/>
             </p:column>
-            <p:column>
-                <f:facet name="header">Erstellt am</f:facet>
+            <p:column headerText="Erstellt am">
                 <h:outputText value="#{entry.createdAt}"/>
             </p:column>
-            <p:column rendered="#{appContext.activeUser != null}">
-                <f:facet name="Aktionen">Jahr</f:facet>
+            <p:column rendered="#{appContext.activeUser != null}"
+                      headerText="Aktionen">
                 <div class="ui-inputgroup">
-
+                    <p:commandButton value="übernehmen"
+                                     action="#{dataSetEntryChangeListingController.acceptRequest(entry)}"
+                                     update="@form"
+                                     ajax="true"/>
+                    <p:commandButton value="ablehnen"
+                                     action="#{dataSetEntryChangeListingController.denyRequest(entry)}"
+                                     styleClass="ui-button-danger"
+                                     update="@form"
+                                     ajax="true"/>
                 </div>
             </p:column>
         </p:dataTable>

@@ -20,20 +20,17 @@
 
 
     <p:card title="Ursprüngliche Daten">
-        <div class="ui-fluid">
-            <div class="field">
-                <p:outputLabel value="Land"/>
-                <h:outputText value="#{dataSetEntryChangeDetailController.activeEntity.datasetEntry.country}"/>
-            </div>
-            <div class="field">
-                <p:outputLabel value="Emissionen"/>
-                <h:outputText value="#{dataSetEntryChangeDetailController.activeEntity.datasetEntry.emissions}"/>
-            </div>
-            <div class="field">
-                <p:outputLabel value="Jahr"/>
-                <h:outputText value="#{dataSetEntryChangeDetailController.activeEntity.datasetEntry.year}"/>
-            </div>
-        </div>
+        <p:panelGrid columns="2"
+                     columnClasses="col-12 md:col-6">
+            <p:outputLabel value="Land"/>
+            <h:outputText value="#{dataSetEntryChangeDetailController.activeEntity.datasetEntry.country}"/>
+
+            <p:outputLabel value="Emissionen"/>
+            <h:outputText value="#{dataSetEntryChangeDetailController.activeEntity.datasetEntry.emissions}"/>
+
+            <p:outputLabel value="Jahr"/>
+            <h:outputText value="#{dataSetEntryChangeDetailController.activeEntity.datasetEntry.year}"/>
+        </p:panelGrid>
     </p:card>
     <h:form>
         <p:card title="Änderungen">

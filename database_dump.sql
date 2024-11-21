@@ -19,9 +19,6 @@
 -- Table structure for table `dataset_entry`
 --
 
-DROP DATABASE IF EXISTS `like_hero_to_zero`;
-CREATE DATABASE `like_hero_to_zero`;
-
 DROP TABLE IF EXISTS `dataset_entry`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;

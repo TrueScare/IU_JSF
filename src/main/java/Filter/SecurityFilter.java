@@ -22,7 +22,9 @@ public class SecurityFilter implements Filter {
 
         if (context.getActiveUser() == null) {
             HttpServletResponse res = (HttpServletResponse) response;
-            res.sendRedirect(req.getContextPath() + "/login.xhtml?redirectTo=" + path);
+            res.sendRedirect(req.getContextPath()
+                    + "/login.xhtml?redirectTo="
+                    + path);
         } else {
             chain.doFilter(request, response);
         }

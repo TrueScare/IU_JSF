@@ -19,7 +19,7 @@ public class DataSetEntryChangeDAO extends BaseDAO<DataSetEntryChange> {
         super(DataSetEntryChange.class);
     }
 
-    public List<DataSetEntryChange> getChangesToBeApproved(Long userID) {
+    public List<DataSetEntryChange> getChangesToBeApproved(String username) {
 
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<DataSetEntryChange> cq = cb.createQuery(DataSetEntryChange.class);
@@ -29,7 +29,7 @@ public class DataSetEntryChangeDAO extends BaseDAO<DataSetEntryChange> {
         Join<DataSetEntry, User> user = entry.join("owner", JoinType.INNER);
         cq.where(cb.and(
                         cb.isNull(root.get("approved")),
-                        cb.equal(user.get("id"), userID)
+                        cb.equal(user.get("username"), username)
                 )
         );
         cq.orderBy(cb.asc(root.get("createdAt")));

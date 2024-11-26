@@ -8,14 +8,7 @@ import java.util.List;
 
 @Entity(name = "users")
 public class User implements Serializable {
-    public enum Roles {
-        ADMINISTRATOR,
-        SCIENTIST
-    }
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String username;
     private String password;
     @Column(name = "is_admin")
@@ -26,14 +19,6 @@ public class User implements Serializable {
     private List<DataSetEntryChange> dataSetEntryChanges = new ArrayList<>();
 
     public User() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getUsername() {

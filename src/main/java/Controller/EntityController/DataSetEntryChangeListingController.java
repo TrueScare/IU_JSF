@@ -25,7 +25,7 @@ public class DataSetEntryChangeListingController extends BaseEntityListingContro
 
     @Override
     public Collection<DataSetEntryChange> getListing() {
-        return entityList = entityDAO.getChangesToBeApproved(appContext.getActiveUser().getId());
+        return entityList = entityDAO.getChangesToBeApproved(appContext.getActiveUser().getUsername());
     }
 
     public void acceptRequest(DataSetEntryChange change) {

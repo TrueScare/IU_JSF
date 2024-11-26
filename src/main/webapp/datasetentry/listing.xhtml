@@ -19,16 +19,16 @@
                 <div class="ui-inputgroup">
                     <p:button outcome="#{dataSetEntryChangeDetailController.getPagePath()}"
                               value="änderung vorschlagen"
-                              rendered="#{appContext.activeUser.id != entry.owner.id}">
+                              rendered="#{appContext.activeUser.username != entry.owner.username}">
                         <f:param name="toBeChangedID" value="#{entry.id}"/>
                     </p:button>
                     <p:button outcome="#{dataSetEntryDetailController.getPagePath()}"
                               value="beabeiten"
-                              rendered="#{appContext.activeUser.id == entry.owner.id}">
+                              rendered="#{appContext.activeUser.username == entry.owner.username}">
                         <f:param name="entityID" value="#{entry.id}"/>
                     </p:button>
                     <p:commandButton action="#{dataSetEntryListingController.deleteEntity(entry)}"
-                                     rendered="#{appContext.activeUser.id == entry.owner.id}"
+                                     rendered="#{appContext.activeUser.username == entry.owner.username}"
                                      value="löschen"
                                      styleClass="ui-button-danger"
                                      update="@form"
